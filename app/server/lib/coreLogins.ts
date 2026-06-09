@@ -2,6 +2,7 @@ import {
   FORWARD_AUTH_PROVIDER_KEY,
   GETGRIST_COM_PROVIDER_KEY,
   OIDC_PROVIDER_KEY,
+  PASSWORD_PROVIDER_KEY,
   SAML_PROVIDER_KEY,
 } from "app/common/loginProviders";
 import { appSettings } from "app/server/lib/AppSettings";
@@ -15,6 +16,7 @@ import { GristLoginSystem } from "app/server/lib/GristServer";
 import { LoginSystemConfig } from "app/server/lib/LoginSystemConfig";
 import { getMinimalLoginSystem } from "app/server/lib/MinimalLogin";
 import { getOIDCLoginSystem, readOIDCConfigFromSettings } from "app/server/lib/OIDCConfig";
+import { getPasswordLoginSystem, readPasswordConfigFromSettings } from "app/server/lib/PasswordLogin";
 import { readSamlConfigFromSettings } from "app/server/lib/SamlConfig";
 import { getSamlLoginSystem } from "app/server/lib/SamlConfig";
 
@@ -50,6 +52,11 @@ export const LOGIN_SYSTEMS: LoginSystemConfig[] = [
     name: "SAML",
     reader: readSamlConfigFromSettings,
     builder: getSamlLoginSystem,
+  },
+  { key: PASSWORD_PROVIDER_KEY,
+    name: "Email + password",
+    reader: readPasswordConfigFromSettings,
+    builder: getPasswordLoginSystem,
   },
   { key: FORWARD_AUTH_PROVIDER_KEY,
     name: "Forwarded headers",

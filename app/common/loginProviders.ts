@@ -16,6 +16,10 @@ export const GETGRIST_COM_PROVIDER_KEY = "getgrist.com";
 // SAML provider key.
 export const SAML_PROVIDER_KEY = "saml";
 
+// Built-in email + password provider key. Stores accounts directly in Grist's
+// home database, so it needs no external identity provider.
+export const PASSWORD_PROVIDER_KEY = "password";
+
 // Special provider that uses boot key to authenticate as install admin.
 export const BOOT_KEY_PROVIDER_KEY = "boot-key";
 

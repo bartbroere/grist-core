@@ -497,7 +497,10 @@ Grist can be configured in many ways. Here are the main environment variables it
 | GRIST_SNAPSHOT_KEEP | optional. Number of recent snapshots to retain unconditionally for a document, regardless of when they were made |
 | GRIST_PROMCLIENT_PORT | optional. If set, serve the Prometheus metrics on the specified port number. ⚠️ Be sure to use a port which is not publicly exposed ⚠️. |
 | GRIST_ENABLE_SCIM | optional. If set, enable the [SCIM API Endpoint](https://support.getgrist.com/install/scim/) (experimental) |
-| GRIST_LOGIN_SYSTEM_TYPE | optional. If set, explicitly selects which login system to use. Valid values: `saml`, `oidc`, `forward-auth`, `minimal`. If not set, Grist will automatically detect and use the first configured login system. |
+| GRIST_LOGIN_SYSTEM_TYPE | optional. If set, explicitly selects which login system to use. Valid values: `password`, `saml`, `oidc`, `forward-auth`, `minimal`. If not set, Grist will automatically detect and use the first configured login system. |
+| GRIST_PASSWORD_LOGIN | optional. If set to `true`, enables the built-in email + password login system. Accounts are registered from a login screen served by Grist and stored (with scrypt-hashed passwords) in Grist's own database — no external identity provider or mail server is needed. Intended for small self-hosted installations; put Grist behind HTTPS when using it. |
+| GRIST_PASSWORD_LOGIN_MIN_LENGTH | optional. Minimum password length accepted when registering with `GRIST_PASSWORD_LOGIN`. Defaults to 8. |
+| GRIST_PASSWORD_LOGIN_ALLOW_SIGNUP | optional. If set to `false`, disables new registrations for `GRIST_PASSWORD_LOGIN` (existing users can still sign in). Defaults to true. |
 | GRIST_OIDC_... | optional. Environment variables used to configure OpenID authentification. See [OpenID Connect](https://support.getgrist.com/install/oidc/) documentation for full related list of environment variables. |
 | GRIST_SAML_... | optional. Environment variables used to configure SAML authentification. See [SAML](https://support.getgrist.com/install/saml/) documentation for full related list of environment variables. |
 | GRIST_IDP_EXTRA_PROPS | optional. If set, defines which extra fields returned by your identity provider will be stored in the users table of the home database (in the `options.ssoExtraInfo` object). Usage: 'onekey,anotherkey'. |
